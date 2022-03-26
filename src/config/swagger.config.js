@@ -9,7 +9,7 @@ const options = {
     },
     servers:[
         {
-            url: `http://localhost:${process.env.PORT}`    
+            url: `${process.env.SWAGGER_SERVER_URL}`    
         }
     ],
     apis: []
