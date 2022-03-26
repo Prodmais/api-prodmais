@@ -1,10 +1,10 @@
 const express = require('express');
+const app = express();
+
+// Swagger configuration
 const swaggerJsDoc = require('swagger-jsdoc');
 const swaggerOptions = require('./config/swagger.config');
 const swaggerUi = require('swagger-ui-express');
-const app = express();
-
-const port = process.env.PORT || 3000
 
 const specs = swaggerJsDoc(swaggerOptions);
 
@@ -14,6 +14,6 @@ app.get('/', (request, response, next) => {
 
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(specs));
 
-app.listen(port, () => {
+app.listen(process.env.PORT, () => {
     console.log(`Server is running on port 3000 🚀`);
 });
