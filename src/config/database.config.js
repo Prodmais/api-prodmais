@@ -23,7 +23,6 @@ if (process.env.ENVIRONMENT === "production") {
         dialect: process.env.DEV_DB_DIALECT,
         define: {
             timestamps: true,
-            underscored: true,
         },
     }
 }
