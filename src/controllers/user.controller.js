@@ -1,7 +1,7 @@
 const { UserService } = require("../services");
 
 module.exports = {
-    async create(request, response, next) {
+    create: async function(request, response, next) {
         const { name, email, password } = request.body;
 
         const data = {
