@@ -8,7 +8,7 @@ if (process.env.ENVIRONMENT === "production") {
         database: process.env.PROD_DB_DATABASE,
         host: process.env.PROD_DB_HOST,
         dialect: process.env.PROD_DB_DIALECT,
-        timezone: "America/Manaus",
+        timezone: '-04:00',
         dialectOptions: {
             useUTC: false,
         },
