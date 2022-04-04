@@ -8,6 +8,10 @@ if (process.env.ENVIRONMENT === "production") {
         database: process.env.PROD_DB_DATABASE,
         host: process.env.PROD_DB_HOST,
         dialect: process.env.PROD_DB_DIALECT,
+        timezone: '-04:00',
+        dialectOptions: {
+            useUTC: false,
+        },
         define: {
             timestamps: true,
         },
@@ -20,6 +24,10 @@ if (process.env.ENVIRONMENT === "production") {
         host: process.env.DEV_DB_HOST,
         port: process.env.DEV_DB_PORT,
         dialect: process.env.DEV_DB_DIALECT,
+        timezone: '-04:00',
+        dialectOptions: {
+            useUTC: false,
+        },
         define: {
             timestamps: true,
         },
