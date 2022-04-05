@@ -1,4 +1,5 @@
 const { Users } = require('../database/models/index');
+const { InternalError } = require('../errors');
 
 module.exports = {
     create: async function(userData) {
@@ -11,6 +12,8 @@ module.exports = {
             where: {
                 email,
             }
+        }).catch(err => {
+            throw new InternalError(err);
         }); 
 
         return user;
