@@ -9,4 +9,12 @@ module.exports = {
         status: httpErrors.NOT_FOUND,
         message: "Usuário não encontrado!"
     },
+    USER003: {
+        status: httpErrors.INTERNAL_SERVER_ERROR,
+        message: "Falha na criação de usuário!"
+    },
+    USER004: {
+        status: httpErrors.INTERNAL_SERVER_ERROR,
+        message: "Falha na busca por usuário!"
+    },
 }
