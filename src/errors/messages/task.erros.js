@@ -7,10 +7,6 @@ module.exports = {
     },
     TASK002: {
       status: httpErrors.INTERNAL_SERVER_ERROR,
-      message: "Ocorreu um error no sistema!"
-    },
-    TASK003: {
-      status: httpErrors.TIME_OUT,
-      message: "Tempo excedido!"
+      message: "Falha na busca pela tarefa!"
     },
 }

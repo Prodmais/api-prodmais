@@ -1,44 +1,58 @@
-const { Task } = require('../database/models/index');
+const { Tasks } = require('../database/models/index');
 const { InternalError } = require('../errors');
+const { TaskErrors } = require('../errors/messages');
 
 module.exports = {
     create: async function(taskData) {
-        const task = await Task.create(taskData);
+        const task = await Tasks.create(taskData);
 
         return task;
     },
 
-    update: async function(id, taskData) {
-        const [result, upTask] = await Task.update(taskData, {
+    update: async function(id) {
+        const upTask = await Tasks.update( {
           where:  {
             id
           },
         })
         .catch(err => console.log(err))
 
+        await upTask.save()
+
         return upTask;
     },
 
-    listOne: async function (id, data) {
-      const [result, showedTask] = await Task.listOne(data, {
+    findById: async function(id) {
+      const task = await Tasks.findOne({
+          where: {
+              id,
+          }
+      }).catch(err => {
+          console.log(err);
+          throw new InternalError(TaskErrors.TASK002);
+      }); 
+
+      return task;
+    },
+
+    listAll: async function(id) {
+      const tasks = await Tasks.findAll({raw: true}).catch(err => {
+          console.log(err);
+          throw new InternalError(TaskErrors.TASK002);
+      }); 
+
+      return tasks;
+    },
+
+    delete: async function (id) {
+      const deletedTask = await Tasks.delete({
         where: {
           id
         }
-      })
-    },
-
-    listAll: async function() {
-
-    },
-
-    delete: async function (data, id) {
-      const deletedTask = await Task.delete(date, {
-        where: {
-          id
-        }
+      }).catch(err => {
+        console.log(err)
       })
 
       return deletedTask;
     }
-
- }
+}
