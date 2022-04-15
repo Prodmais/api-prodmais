@@ -17,4 +17,24 @@ module.exports = {
         status: httpErrors.INTERNAL_SERVER_ERROR,
         message: "Falha na busca por usuário!"
     },
+    USER005: {
+        status: httpErrors.INTERNAL_SERVER_ERROR,
+        message: "Falha na atualização das informações do usuário!"
+    },
+    USER006: {
+        status: httpErrors.INTERNAL_SERVER_ERROR,
+        message: "Falha na atualização da senha do usuário!"
+    },
+    USER007: {
+        status: httpErrors.BAD_REQUEST,
+        message: "Senha incorreta!"
+    },
+    USER008: {
+        status: httpErrors.INTERNAL_SERVER_ERROR,
+        message: "Falha na exclusão do usuário!"
+    },
+    USER009: {
+        status: httpErrors.INTERNAL_SERVER_ERROR,
+        message: "Falha na restauração do usuário!"
+    },
 }
