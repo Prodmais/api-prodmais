@@ -18,8 +18,25 @@ module.exports = {
   },
   findById: async function (request, response) {
     const userId = request.userId;
- 
+
     const user = await UserService.findById(userId);
+
+    response.status(200).json(user);
+  },
+  update: async function (request, response) {
+    const userId = request.userId;
+
+    const email = request.body.email;
+
+    if (email) {
+      const emailExists = await UserService.findByEmail(email);
+
+      if (emailExists && emailExists.id !== userId) {
+        throw new AppError(UserErrors.USER001);
+      }
+    }
+
+    const user = await UserService.update(userId, request.body);
 
     response.status(200).json(user);
   },

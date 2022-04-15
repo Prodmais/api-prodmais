@@ -11,4 +11,6 @@ routes.use(isAutenticated);
 
 routes.get('/', UserController.findById);
 
+routes.put('/', JoiValidator(UserController.update, userSchema.update));
+
 module.exports = routes;

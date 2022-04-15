@@ -17,4 +17,8 @@ module.exports = {
         status: httpErrors.INTERNAL_SERVER_ERROR,
         message: "Falha na busca por usuário!"
     },
+    USER005: {
+        status: httpErrors.INTERNAL_SERVER_ERROR,
+        message: "Falha na atualização das informações do usuário!"
+    },
 }
