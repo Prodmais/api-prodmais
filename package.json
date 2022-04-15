@@ -9,6 +9,7 @@
   "dependencies": {
     "@hapi/joi": "^17.1.1",
     "cors": "^2.8.5",
+    "dependencies": "^0.0.1",
     "dotenv": "^16.0.0",
     "express": "^4.17.3",
     "express-async-errors": "^3.1.1",
