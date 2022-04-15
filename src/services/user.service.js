@@ -63,5 +63,24 @@ module.exports = {
         }
 
         return user[0].dataValues;
+    },
+    updatePassword: async function (id, password) {
+
+        const hashPassword = await hash(password, 10);
+
+        const [result] = await Users.update({ password: hashPassword }, {
+            where: {
+                id
+            }
+        }).catch(err => {
+            console.log(err);
+            throw new InternalError(UserErrors.USER005);
+        });
+
+        if (result !== 1) {
+            throw new InternalError(UserErrors.USER005);
+        }
+
+        return result;
     }
 }

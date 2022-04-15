@@ -21,4 +21,12 @@ module.exports = {
         status: httpErrors.INTERNAL_SERVER_ERROR,
         message: "Falha na atualização das informações do usuário!"
     },
+    USER006: {
+        status: httpErrors.INTERNAL_SERVER_ERROR,
+        message: "Falha na atualização da senha do usuário!"
+    },
+    USER007: {
+        status: httpErrors.BAD_REQUEST,
+        message: "Senha incorreta!"
+    },
 }

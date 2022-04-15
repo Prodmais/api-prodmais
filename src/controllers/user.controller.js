@@ -1,6 +1,7 @@
 const { UserService } = require("../services");
 const { AppError } = require("../errors");
 const { UserErrors } = require("../errors/messages");
+const { compare } = require("bcryptjs");
 
 module.exports = {
   create: async function (request, response) {
@@ -39,5 +40,22 @@ module.exports = {
     const user = await UserService.update(userId, request.body);
 
     response.status(200).json(user);
+  },
+  updatePassword: async function (request, response) {
+    const userId = request.userId;
+
+    const { password, new_password } = request.body;
+
+    const user = await UserService.findById(userId);
+
+    const passwordConfirmed = await compare(password, user.password);
+
+    if (!passwordConfirmed) {
+      throw new AppError(UserErrors.USER007);
+    }
+
+    const result = await UserService.updatePassword(userId, new_password);
+
+    response.status(200).json(result);
   },
 };

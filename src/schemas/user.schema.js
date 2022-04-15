@@ -15,4 +15,8 @@ module.exports = {
       .email({ tlds: { allow: false } })
       .optional(),
   }),
+  updatePassword: Joi.object({
+    password: string.min(6).required(),
+    new_password: string.min(6).required(),
+  }),
 };

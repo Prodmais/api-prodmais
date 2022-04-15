@@ -13,4 +13,6 @@ routes.get('/', UserController.findById);
 
 routes.put('/', JoiValidator(UserController.update, userSchema.update));
 
+routes.put('/UpdatePassword', JoiValidator(UserController.updatePassword, userSchema.updatePassword));
+
 module.exports = routes;
