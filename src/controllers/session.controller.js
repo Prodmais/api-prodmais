@@ -8,7 +8,7 @@ module.exports = {
   login: async function (request, response, next) {
     const { email, password } = request.body;
 
-    const user = await UserService.findByEmail(email);
+    const user = await UserService.findByEmail(email, true);
 
     if (!user) {
       throw new AppError(SessionErrors.SESSION001);
@@ -31,10 +31,10 @@ module.exports = {
     );
 
     const data = {
-        id: user.id,
-        name: user.name,
-        email: user.email,
-        token
+      id: user.id,
+      name: user.name,
+      email: user.email,
+      token
     }
 
     response.status(200).json(data);
