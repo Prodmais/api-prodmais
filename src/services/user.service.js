@@ -30,9 +30,21 @@ module.exports = {
             }
         }).catch(err => {
             console.log(err);
-            throw new InternalError(UserErrors.USER003);
+            throw new InternalError(UserErrors.USER004);
         }); 
 
         return user;
-    }
+    },
+    findById: async function(id) {
+        const user = await Users.findOne({
+            where: {
+                id,
+            }
+        }).catch(err => {
+            console.log(err);
+            throw new InternalError(UserErrors.USER004);
+        }); 
+
+        return user;
+    },
  }

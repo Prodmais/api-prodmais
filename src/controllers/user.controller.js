@@ -16,4 +16,11 @@ module.exports = {
 
     response.status(201).json(user);
   },
+  findById: async function (request, response) {
+    const userId = request.userId;
+ 
+    const user = await UserService.findById(userId);
+
+    response.status(200).json(user);
+  },
 };
