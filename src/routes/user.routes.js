@@ -7,6 +7,8 @@ const routes = Router();
 
 routes.post('/', JoiValidator(UserController.create, userSchema.create));
 
+routes.post('/restore', JoiValidator(UserController.restore, userSchema.restore));
+
 routes.use(isAutenticated);
 
 routes.get('/', UserController.findById);

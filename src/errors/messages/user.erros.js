@@ -33,4 +33,8 @@ module.exports = {
         status: httpErrors.INTERNAL_SERVER_ERROR,
         message: "Falha na exclusão do usuário!"
     },
+    USER009: {
+        status: httpErrors.INTERNAL_SERVER_ERROR,
+        message: "Falha na restauração do usuário!"
+    },
 }

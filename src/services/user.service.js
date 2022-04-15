@@ -94,4 +94,14 @@ module.exports = {
             throw new InternalError(UserErrors.USER008);
         });
     },
+    restore: async function (email) {
+        return await Users.restore({
+            where: {
+                email
+            }
+        }).catch(err => {
+            console.log(err);
+            throw new InternalError(UserErrors.USER009);
+        });
+    },
 }

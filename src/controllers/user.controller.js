@@ -65,4 +65,17 @@ module.exports = {
 
     response.status(200).json("Success");
   },
+  restore: async function (request, response) {
+    const { email } = request.body;
+
+    const userExist = await UserService.findByEmail(email);
+
+    if (!userExist) {
+      throw new AppError(UserErrors.USER002);
+    }
+
+    await UserService.restore(email);
+
+    response.status(200).json("Success");
+  },
 };
