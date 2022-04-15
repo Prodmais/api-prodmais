@@ -23,11 +23,12 @@ module.exports = {
 
         return user;
     },
-    findByEmail: async function (email) {
+    findByEmail: async function (email, paranoid = false) {
         const user = await Users.findOne({
             where: {
                 email,
-            }
+            },
+            paranoid: paranoid
         }).catch(err => {
             console.log(err);
             throw new InternalError(UserErrors.USER004);
@@ -82,5 +83,15 @@ module.exports = {
         }
 
         return result;
-    }
+    },
+    delete: async function (id) {
+        return await Users.destroy({
+            where: {
+                id
+            }
+        }).catch(err => {
+            console.log(err);
+            throw new InternalError(UserErrors.USER008);
+        });
+    },
 }

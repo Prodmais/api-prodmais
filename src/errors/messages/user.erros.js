@@ -29,4 +29,8 @@ module.exports = {
         status: httpErrors.BAD_REQUEST,
         message: "Senha incorreta!"
     },
+    USER008: {
+        status: httpErrors.INTERNAL_SERVER_ERROR,
+        message: "Falha na exclusão do usuário!"
+    },
 }

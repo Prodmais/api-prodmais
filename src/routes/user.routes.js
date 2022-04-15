@@ -15,4 +15,6 @@ routes.put('/', JoiValidator(UserController.update, userSchema.update));
 
 routes.put('/UpdatePassword', JoiValidator(UserController.updatePassword, userSchema.updatePassword));
 
+routes.delete('/', UserController.delete);
+
 module.exports = routes;

@@ -58,4 +58,11 @@ module.exports = {
 
     response.status(200).json(result);
   },
+  delete: async function (request, response) {
+    const userId = request.userId;
+
+    await UserService.delete(userId);
+
+    response.status(200).json("Success");
+  },
 };
