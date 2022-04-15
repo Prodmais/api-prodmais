@@ -17,6 +17,7 @@ module.exports = {
 
     response.status(201).json(user);
   },
+  
   findById: async function (request, response) {
     const userId = request.userId;
 
@@ -24,6 +25,7 @@ module.exports = {
 
     response.status(200).json(user);
   },
+
   update: async function (request, response) {
     const userId = request.userId;
 
@@ -41,6 +43,7 @@ module.exports = {
 
     response.status(200).json(user);
   },
+
   updatePassword: async function (request, response) {
     const userId = request.userId;
 
@@ -58,6 +61,7 @@ module.exports = {
 
     response.status(200).json(result);
   },
+
   delete: async function (request, response) {
     const userId = request.userId;
 
@@ -65,6 +69,7 @@ module.exports = {
 
     response.status(200).json("Success");
   },
+
   restore: async function (request, response) {
     const { email } = request.body;
 

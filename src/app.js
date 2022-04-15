@@ -7,7 +7,7 @@ require('express-async-errors');
 const swaggerJsDoc = require('swagger-jsdoc');
 const swaggerOptions = require('./config/swagger.config');
 const swaggerUi = require('swagger-ui-express');
-const { UserRoutes, SessionRoutes } = require('./routes');
+const { UserRoutes, SessionRoutes,TaskRoutes } = require('./routes');
 const { AppError } = require('./errors');
 
 const app = express();
@@ -23,6 +23,7 @@ app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(specs));
 
 app.use("/", SessionRoutes);
 app.use("/user", UserRoutes);
+app.use("/task", TaskRoutes);
 
 app.use((err, request, response, next) => {
     if(err instanceof AppError){

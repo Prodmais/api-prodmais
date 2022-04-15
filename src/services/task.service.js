@@ -4,29 +4,35 @@ const { TaskErrors } = require('../errors/messages');
 
 module.exports = {
     create: async function(taskData) {
-        const task = await Tasks.create(taskData);
+        const task = await Tasks.create(taskData).catch(err => {
+          console.log(err);
+          throw new InternalError(TaskErrors.TASK003);
+      });
 
         return task;
     },
 
-    update: async function(id) {
-        const upTask = await Tasks.update( {
-          where:  {
-            id
-          },
-        })
-        .catch(err => console.log(err))
-
-        await upTask.save()
-
-        return upTask;
-    },
-
-    findById: async function(id) {
-      const task = await Tasks.findOne({
+    update: async function (id, data) {
+      const [result, task] = await Tasks.update(data, {
           where: {
               id,
-          }
+              userId: data.userId
+          },
+          returning: true
+      }).catch(err => {
+          console.log(err);
+          throw new InternalError(TaskErrors.TASK004);
+      });
+
+      return task[0].dataValues;
+  },
+
+    findById: async function(id, userId) {
+      const task = await Tasks.findOne({
+        where: {
+            id,
+            userId
+        },
       }).catch(err => {
           console.log(err);
           throw new InternalError(TaskErrors.TASK002);
@@ -35,24 +41,28 @@ module.exports = {
       return task;
     },
 
-    listAll: async function(id) {
-      const tasks = await Tasks.findAll({raw: true}).catch(err => {
+    findAll: async function(id) {
+      const tasks = await Tasks.findAll({
+        where: { userId: id},
+        raw: true
+      }).catch(err => {
           console.log(err);
           throw new InternalError(TaskErrors.TASK002);
-      }); 
+      });
 
       return tasks;
     },
 
-    delete: async function (id) {
-      const deletedTask = await Tasks.delete({
+    delete: async function (id, userId) {
+      return await Tasks.destroy({
         where: {
-          id
-        }
-      }).catch(err => {
-        console.log(err)
-      })
+          id,
+          userId
+        },
 
-      return deletedTask;
+        }).catch(err => {
+          console.log(err);
+          throw new InternalError(TaskErrors.TASK005);
+        })
     }
 }

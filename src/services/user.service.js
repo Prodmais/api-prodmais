@@ -23,6 +23,7 @@ module.exports = {
 
         return user;
     },
+
     findByEmail: async function (email, paranoid = false) {
         const user = await Users.findOne({
             where: {
@@ -36,6 +37,7 @@ module.exports = {
 
         return user;
     },
+
     findById: async function (id) {
         const user = await Users.findOne({
             where: {
@@ -48,6 +50,7 @@ module.exports = {
 
         return user;
     },
+
     update: async function (id, data) {
         const [result, user] = await Users.update(data, {
             where: {
@@ -65,6 +68,7 @@ module.exports = {
 
         return user[0].dataValues;
     },
+
     updatePassword: async function (id, password) {
 
         const hashPassword = await hash(password, 10);
@@ -84,6 +88,7 @@ module.exports = {
 
         return result;
     },
+
     delete: async function (id) {
         return await Users.destroy({
             where: {
@@ -94,6 +99,7 @@ module.exports = {
             throw new InternalError(UserErrors.USER008);
         });
     },
+    
     restore: async function (email) {
         return await Users.restore({
             where: {

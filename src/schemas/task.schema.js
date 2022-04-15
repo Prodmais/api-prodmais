@@ -13,4 +13,10 @@ module.exports = {
     description: string,
     status: string.required()
   }),
+  findOne: Joi.object({
+    id: number.required(),
+  }),
+  delete: Joi.object({
+    id: number.required(),
+  }),
 };
