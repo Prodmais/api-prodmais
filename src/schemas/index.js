@@ -1,3 +1,6 @@
 module.exports = {
-    UserSchema: require('../schemas/user.schema'),
+    UserSchema: require('./user.schema'),
+    TaskSchema: require('./task.schema'),
+    SessionSchema: require('./session.schema')
+
 }

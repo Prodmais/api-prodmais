@@ -7,7 +7,7 @@ require('express-async-errors');
 const swaggerJsDoc = require('swagger-jsdoc');
 const swaggerOptions = require('./config/swagger.config');
 const swaggerUi = require('swagger-ui-express');
-const { UserRoutes } = require('./routes');
+const { UserRoutes, SessionRoutes,TaskRoutes } = require('./routes');
 const { AppError } = require('./errors');
 
 const app = express();
@@ -19,13 +19,11 @@ app.use(cors());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
-app.get('/', (request, response, next) => {
-    response.send("<h1>Server is running on Deploy 🚀<h1>");
-});
-
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(specs));
 
+app.use("/", SessionRoutes);
 app.use("/user", UserRoutes);
+app.use("/task", TaskRoutes);
 
 app.use((err, request, response, next) => {
     if(err instanceof AppError){
@@ -36,6 +34,10 @@ app.use((err, request, response, next) => {
     } else {
         response.status(500).json(err);
     }
+});
+
+app.get('/', (request, response, next) => {
+    response.send("<h1>Server is running on Deploy 🚀<h1>");
 });
 
 app.listen(process.env.PORT, () => {

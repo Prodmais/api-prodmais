@@ -22,8 +22,10 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.DATE,
             allowNull: true,
         },
-        timestamps: true,
-    });
+    },
+        {
+            timestamps: true,
+        });
 
     TASK.associate = function (models) {
         TASK.belongsTo(models.Users, {
