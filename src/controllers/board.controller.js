@@ -78,4 +78,11 @@ module.exports = {
 
         response.status(200).json(board);
     },
+
+    findMobile: async function (request, response) {
+        const userId = request.userId;
+        const mobile = await boardService.findMobile();
+
+        response.status(200).json(mobile)
+    },
 }
