@@ -1,7 +1,7 @@
-const { TYPES_USER } = require('../../constants');
+const { TYPES_MESSAGE } = require('../../constants');
 
 module.exports = (sequelize, DataTypes) => {
-    const USER = sequelize.define('Users', {
+    const MESSAGE = sequelize.define('Messages', {
         id: {
             type: DataTypes.INTEGER,
             primaryKey: true,
@@ -11,25 +11,25 @@ module.exports = (sequelize, DataTypes) => {
         name: {
             type: DataTypes.STRING(40),
             allowNull: false,
-        },
-        email: {
-            type: DataTypes.STRING(255),
             unique: true,
-            allowNull: false,
-        },
-        password: {
-            type: DataTypes.STRING(255),
-            allowNull: false,
         },
         type: {
             type: DataTypes.STRING(25),
             allowNull: false,
-            defaultValue: TYPES_USER.COMMON,
+            defaultValue: TYPES_MESSAGE.MOTIVATIONAL,
         },
-        token: {
-            type: DataTypes.STRING(255),
+        createdAt: {
+            type: DataTypes.DATE,
+            allowNull: false,
+        },
+        updatedAt: {
+            type: DataTypes.DATE,
+            allowNull: false,
+        },
+        deletedAt: {
+            type: DataTypes.DATE,
             allowNull: true,
-        },
+        }
     },
         {
             timestamps: true,
@@ -37,11 +37,5 @@ module.exports = (sequelize, DataTypes) => {
         }
     );
 
-    USER.associate = function (models) {
-        USER.hasMany(models.Tasks, {
-            foreignKey: 'userId'
-        });
-    }
-
-    return USER;
+    return MESSAGE;
 }
