@@ -73,10 +73,10 @@ module.exports = {
 
     const existTask = await TaskService.findById(id, userId);
 
-    if (!existTask) {
+    if(!existTask) {
       throw new AppError(TaskErrors.TASK001);
     }
-
+    
     response.status(200).json(existTask);
   },
 }

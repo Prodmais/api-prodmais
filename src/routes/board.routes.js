@@ -8,5 +8,8 @@ const routes = Router();
 routes.use(isAutenticated);
 
 routes.post('/', JoiValidator(BoardController.create, boardSchema.create));
+routes.get('/board/:id', JoiValidator(BoardController.findOne, boardSchema.findOne));
+routes.get('/boards', JoiValidator(BoardController.findAll, boardSchema.findAll));
+
 
 module.exports = routes;

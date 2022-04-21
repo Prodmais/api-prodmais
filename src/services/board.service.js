@@ -42,4 +42,30 @@ module.exports = {
             throw new InternalError(BoardErrors.BOARD003);
         });
     },
+
+    findById: async function (id, userId) {
+        const board = await Boards.findOne({
+            where: {
+                id,
+                userId
+            },
+        }).catch(err => {
+            console.log(err);
+            throw new InternalError(BoardErrors.BOARD004);
+        });
+
+        return board;
+    },
+
+    findAll: async function (id) {
+        const board = await Boards.findAll({
+            where: { userId: id },
+            raw: true
+        }).catch(err => {
+            console.log(err);
+            throw new InternalError(BoardErrors.BOARD004);
+        });
+
+        return board;
+    },
 }
