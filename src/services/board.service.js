@@ -10,4 +10,30 @@ module.exports = {
 
         return board;
     },
+
+    findById: async function(id, userId) {
+        const board = await Boards.findOne({
+          where: {
+              id,
+              userId
+          },
+        }).catch(err => {
+            console.log(err);
+            throw new InternalError(BoardErrors.TASK002);
+        }); 
+  
+        return board;
+      },
+  
+      findAll: async function(id) {
+        const board = await Boards.findAll({
+          where: { userId: id},
+          raw: true
+        }).catch(err => {
+            console.log(err);
+            throw new InternalError(BoardErrors.TASK002);
+        });
+  
+        return board;
+      },
 }
