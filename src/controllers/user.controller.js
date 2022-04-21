@@ -17,7 +17,7 @@ module.exports = {
 
     response.status(201).json(user);
   },
-  
+
   findById: async function (request, response) {
     const userId = request.userId;
 

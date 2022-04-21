@@ -68,15 +68,15 @@ module.exports = {
     },
 
     findOne: async function (request, response) {
-      const id = request.params
+      const { id } = request.params
       const userId = request.userId
 
-      const ExistTask = await TaskService.findById(id, userId);
+      const existTask = await TaskService.findById(id, userId);
 
-      if(!ExistTask) {
+      if(!existTask) {
         throw new AppError(TaskErrors.TASK001);
       }
-  
-      response.status(200).json(task);
+      
+      response.status(200).json(existTask);
     },
 }

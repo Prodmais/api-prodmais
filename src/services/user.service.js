@@ -99,7 +99,7 @@ module.exports = {
             throw new InternalError(UserErrors.USER008);
         });
     },
-    
+
     restore: async function (email) {
         return await Users.restore({
             where: {
