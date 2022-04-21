@@ -21,8 +21,7 @@ module.exports = {
     
         const board = await boardService.findAll(userId);
     
-        response.status(200).json(tasks);
-
+        response.status(200).json(board);
         return board;
       },
     

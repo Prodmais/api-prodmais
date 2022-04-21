@@ -7,7 +7,7 @@ module.exports = {
             console.log(err);
             throw new InternalError(BoardErrors.BOARD001);
         });
-
+        task
         return board;
     },
 
@@ -19,7 +19,7 @@ module.exports = {
           },
         }).catch(err => {
             console.log(err);
-            throw new InternalError(BoardErrors.TASK002);
+            throw new InternalError(BoardErrors.BOARD002);
         }); 
   
         return board;
@@ -31,7 +31,7 @@ module.exports = {
           raw: true
         }).catch(err => {
             console.log(err);
-            throw new InternalError(BoardErrors.TASK002);
+            throw new InternalError(BoardErrors.BOARD002);
         });
   
         return board;
