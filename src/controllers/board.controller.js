@@ -22,7 +22,6 @@ module.exports = {
         const board = await boardService.findAll(userId);
     
         response.status(200).json(board);
-        return board;
       },
     
       findOne: async function (request, response) {
@@ -32,9 +31,15 @@ module.exports = {
         const existBoard = await boardService.findById(id, userId);
     
         if(!existBoard) {
-          throw new AppError(BoardErrors.BOARD001);
+          throw new AppError(BoardErrors.BOARD002);
         }
         
         response.status(200).json(existBoard);
+      },
+
+      findMobile: async function (request, response) {
+        const mobile = await boardService.findMobile();
+
+        response.status(200).json(mobile)
       },
 }

@@ -8,5 +8,9 @@ module.exports = {
     BOARD002: {
         status: httpErrors.NOT_FOUND,
         message: "Quadro não encontrado!"
+    },
+    BOARD003: {
+        status: httpErrors.NOT_FOUND,
+        message: "Não há quadros mobile!"
     }
 }

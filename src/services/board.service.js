@@ -36,4 +36,15 @@ module.exports = {
   
         return board;
       },
+
+      findMobile: async function(){
+        const mobile = await Boards.findOne({
+            where: {isMobile: 1}
+        }).catch(err => {
+            console.log(err);
+            throw new InternalError(BoardErrors.BOARD003);
+        });
+        
+        return mobile;
+      }
 }
