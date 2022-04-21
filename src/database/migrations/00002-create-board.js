@@ -2,7 +2,7 @@
 
 module.exports = {
   async up(queryInterface, Sequelize) {
-    return queryInterface.createTable('Users', {
+    return queryInterface.createTable('Boards', {
       id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
@@ -13,21 +13,12 @@ module.exports = {
         type: Sequelize.STRING(40),
         allowNull: false,
       },
-      email: {
+      description: {
         type: Sequelize.STRING(255),
-        unique: true,
-        allowNull: false,
+        allowNull: true,
       },
-      password: {
-        type: Sequelize.STRING(255),
-        allowNull: false,
-      },
-      type: {
-        type: Sequelize.STRING(25),
-        allowNull: false,
-      },
-      token: {
-        type: Sequelize.STRING(255),
+      isMobile: {
+        type: Sequelize.BOOLEAN,
         allowNull: true,
       },
       createdAt: {
@@ -38,13 +29,17 @@ module.exports = {
         type: Sequelize.DATE,
         allowNull: false,
       },
-      deletedAt: {
-        type: Sequelize.DATE,
-        allowNull: true,
-      }
+      userId: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: { model: 'Users', key: 'id' },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE',
+      },
     });
   },
+
   async down(queryInterface, Sequelize) {
-    return queryInterface.dropTable('Users');
+    return queryInterface.dropTable('Boards');
   }
 };
