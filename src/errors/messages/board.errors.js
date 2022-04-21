@@ -17,4 +17,8 @@ module.exports = {
         status: httpErrors.INTERNAL_SERVER_ERROR,
         message: "Falha na busca do quadro!"
     },
+    BOARD005: {
+        status: httpErrors.INTERNAL_SERVER_ERROR,
+        message: "Quadro não encontrado!"
+    },
 }

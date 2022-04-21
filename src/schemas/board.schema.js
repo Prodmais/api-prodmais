@@ -10,4 +10,12 @@ module.exports = {
     findOne: Joi.object({
         id: number.required(),
     }),
+    update: Joi.object({
+        id: number.required(),
+        name: string.required(),
+        description: string.optional(),
+    }),
+    delete: Joi.object({
+        id: number.required(),
+    }),
 }
