@@ -4,13 +4,13 @@ const { string, number } = Joi.types();
 module.exports = {
   create: Joi.object({
     name: string.required(),
-    description: string,
+    description: string.optional(),
     status: string.required()
   }),
   update: Joi.object({
     id: number.required(),
     name: string.required(),
-    description: string,
+    description: string.optional(),
     status: string.required()
   }),
   findOne: Joi.object({
