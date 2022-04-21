@@ -7,7 +7,7 @@ module.exports = {
             console.log(err);
             throw new InternalError(BoardErrors.BOARD001);
         });
-        task
+
         return board;
     },
 
