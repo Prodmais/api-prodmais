@@ -2,7 +2,7 @@ const { Router } = require('express');
 const { TaskController } = require('../controllers');
 const isAutenticated = require('../middlewares/ isAutenticated');
 const JoiValidator = require('../middlewares/JoiValidator');
-const taskSchema = require('../schemas/user.schema');
+const taskSchema = require('../schemas/task.schema');
 const routes = Router();
 
 routes.use(isAutenticated);

@@ -2,7 +2,7 @@
 
 module.exports = {
   async up(queryInterface, Sequelize) {
-    return queryInterface.createTable('Tasks', {
+    return queryInterface.createTable('Messages', {
       id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
@@ -12,18 +12,11 @@ module.exports = {
       name: {
         type: Sequelize.STRING(40),
         allowNull: false,
+        unique: true,
       },
-      description: {
-        type: Sequelize.STRING(255),
-        allowNull: true,
-      },
-      status: {
-        type: Sequelize.STRING(20),
+      type: {
+        type: Sequelize.STRING(25),
         allowNull: false,
-      },
-      endDate: {
-        type: Sequelize.DATE,
-        allowNull: true,
       },
       createdAt: {
         type: Sequelize.DATE,
@@ -33,17 +26,13 @@ module.exports = {
         type: Sequelize.DATE,
         allowNull: false,
       },
-      userId: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-        references: { model: 'Users', key: 'id' },
-        onUpdate: 'CASCADE',
-        onDelete: 'CASCADE',
-      },
+      deletedAt: {
+        type: Sequelize.DATE,
+        allowNull: true,
+      }
     });
   },
-
   async down(queryInterface, Sequelize) {
-    return queryInterface.dropTable('Tasks');
+    return queryInterface.dropTable('Messages');
   }
 };
