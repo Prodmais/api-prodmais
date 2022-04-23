@@ -30,5 +30,11 @@ module.exports = (sequelize, DataTypes) => {
         });
     }
 
+    BOARD.associate = function (models) {
+        BOARD.hasMany(models.Tasks, {
+            foreignKey: 'boardId'
+        });
+    }
+
     return BOARD;
 }

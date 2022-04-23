@@ -1,9 +1,15 @@
-export const TYPES_USER = {
+module.exports.TYPES_USER = {
     ADMIN: 'Admin',
     COMMON: 'Common',
     PREMIUM: 'Premium'
 }
 
-export const TYPES_MESSAGE = {
+module.exports.TYPES_MESSAGE = {
     MOTIVATIONAL: 'motivational'
+}
+
+module.exports.STATUS_TASK = {
+    DO: 'Do',
+    DOING: 'Doing',
+    DONE: 'Done'
 }

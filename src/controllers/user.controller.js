@@ -2,22 +2,43 @@ const { UserService } = require("../services");
 const { AppError } = require("../errors");
 const { UserErrors } = require("../errors/messages");
 const { compare } = require("bcryptjs");
+const boardService = require("../services/board.service");
+const { sequelize } = require("../database/models");
 
 module.exports = {
   create: async function (request, response) {
     const { name, email, password } = request.body;
 
-    const data = {
-      name,
-      email,
-      password,
-    };
+    const t = await sequelize.transaction();
 
-    const user = await UserService.create(data);
+    try {
+      const data = {
+        name,
+        email,
+        password,
+      };
 
-    response.status(201).json(user);
+      const user = await UserService.create(data, t);
+
+      const boardData = {
+        userId: user.id,
+        name: "Mobile",
+        description: "Quadro mobile",
+        isMobile: true,
+      }
+
+      await boardService.create(boardData, t);
+
+      response.status(201).json(user);
+
+      await t.commit();
+    } catch (err) {
+      await t.rollback();
+      console.log(err);
+      throw new AppError(err);
+    }
   },
-  
+
   findById: async function (request, response) {
     const userId = request.userId;
 
