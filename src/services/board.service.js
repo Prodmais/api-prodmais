@@ -4,8 +4,8 @@ const { InternalError } = require('../errors');
 const { BoardErrors } = require('../errors/messages');
 
 module.exports = {
-    create: async function (data) {
-        const board = await Boards.create(data).catch(err => {
+    create: async function (data, transaction) {
+        const board = await Boards.create(data, { transaction: transaction }).catch(err => {
             console.log(err);
             throw new InternalError(BoardErrors.BOARD001);
         });
