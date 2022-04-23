@@ -1,7 +1,5 @@
-const { STATUS_TASK } = require("../../constants");
-
 module.exports = (sequelize, DataTypes) => {
-    const TASK = sequelize.define('Tasks', {
+    const BOARD = sequelize.define('Boards', {
         id: {
             type: DataTypes.INTEGER,
             primaryKey: true,
@@ -16,25 +14,27 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING(255),
             allowNull: true,
         },
-        status: {
-            type: DataTypes.STRING(20),
-            allowNull: false,
-            defaultValue: STATUS_TASK.DO
-        },
-        endDate: {
-            type: DataTypes.DATE,
+        isMobile: {
+            type: DataTypes.BOOLEAN,
             allowNull: true,
+            defaultValue: false
         },
     },
         {
             timestamps: true,
         });
 
-    TASK.associate = function (models) {
-        TASK.belongsTo(models.Boards, {
+    BOARD.associate = function (models) {
+        BOARD.belongsTo(models.Users, {
+            foreignKey: 'userId'
+        });
+    }
+
+    BOARD.associate = function (models) {
+        BOARD.hasMany(models.Tasks, {
             foreignKey: 'boardId'
         });
     }
 
-    return TASK;
+    return BOARD;
 }

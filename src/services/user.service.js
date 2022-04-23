@@ -4,7 +4,7 @@ const { InternalError, AppError } = require('../errors');
 const { UserErrors } = require('../errors/messages');
 
 module.exports = {
-    create: async function (userData) {
+    create: async function (userData, transaction) {
 
         const emailExists = await this.findByEmail(userData.email);
 
@@ -16,7 +16,7 @@ module.exports = {
 
         userData.password = hashPassword;
 
-        const user = await Users.create(userData).catch(err => {
+        const user = await Users.create(userData, { transaction: transaction }).catch(err => {
             console.log(err);
             throw new InternalError(UserErrors.USER003);
         });
@@ -99,7 +99,7 @@ module.exports = {
             throw new InternalError(UserErrors.USER008);
         });
     },
-    
+
     restore: async function (email) {
         return await Users.restore({
             where: {
