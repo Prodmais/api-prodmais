@@ -1,3 +1,5 @@
+const { STATUS_TASK } = require("../../constants");
+
 module.exports = (sequelize, DataTypes) => {
     const TASK = sequelize.define('Tasks', {
         id: {
@@ -17,6 +19,7 @@ module.exports = (sequelize, DataTypes) => {
         status: {
             type: DataTypes.STRING(20),
             allowNull: false,
+            defaultValue: STATUS_TASK.DO
         },
         endDate: {
             type: DataTypes.DATE,

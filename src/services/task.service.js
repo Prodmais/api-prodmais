@@ -16,7 +16,7 @@ module.exports = {
     const [result, task] = await Tasks.update(data, {
       where: {
         id,
-        userId: data.userId
+        boardId: data.boardId
       },
       returning: true
     }).catch(err => {
@@ -31,11 +31,11 @@ module.exports = {
     return task[0].dataValues;
   },
 
-  findById: async function (id, userId) {
+  findById: async function (id, boardId) {
     const task = await Tasks.findOne({
       where: {
         id,
-        userId
+        boardId
       },
     }).catch(err => {
       console.log(err);
@@ -47,7 +47,7 @@ module.exports = {
 
   findAll: async function (id) {
     const tasks = await Tasks.findAll({
-      where: { userId: id },
+      where: { boardId: id },
       raw: true
     }).catch(err => {
       console.log(err);
@@ -57,11 +57,11 @@ module.exports = {
     return tasks;
   },
 
-  delete: async function (id, userId) {
+  delete: async function (id, boardId) {
     return await Tasks.destroy({
       where: {
         id,
-        userId
+        boardId
       },
 
     }).catch(err => {

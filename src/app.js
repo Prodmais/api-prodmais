@@ -24,7 +24,7 @@ app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(specs));
 app.use("/", SessionRoutes);
 app.use("/user", UserRoutes);
 app.use("/board", BoardRoutes)
-app.use("/task", TaskRoutes);
+app.use("/board", TaskRoutes);
 
 app.use((err, request, response, next) => {
     if (err instanceof AppError) {
