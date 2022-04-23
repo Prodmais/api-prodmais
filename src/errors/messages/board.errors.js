@@ -18,7 +18,11 @@ module.exports = {
         message: "Falha na busca do quadro!"
     },
     BOARD005: {
-        status: httpErrors.INTERNAL_SERVER_ERROR,
+        status: httpErrors.NOT_FOUND,
         message: "Quadro não encontrado!"
+    },
+    BOARD006: {
+        status: httpErrors.NOT_FOUND,
+        message: "Já existe um quadro mobile!"
     },
 }

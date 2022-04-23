@@ -14,6 +14,12 @@ module.exports = {
             isMobile,
         }
 
+        const boardMobileExists = await boardService.findMobile(userId);
+
+        if (boardMobileExists) {
+            throw new AppError(BoardErrors.BOARD006);
+        }
+
         const board = await boardService.create(data);
 
         response.status(201).json(board);
@@ -48,7 +54,6 @@ module.exports = {
 
         const data = {
             id,
-            userId,
             name,
             description
         }
@@ -81,7 +86,8 @@ module.exports = {
 
     findMobile: async function (request, response) {
         const userId = request.userId;
-        const mobile = await boardService.findMobile();
+
+        const mobile = await boardService.findMobile(userId);
 
         response.status(200).json(mobile)
     },

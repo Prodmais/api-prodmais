@@ -1,5 +1,6 @@
-const { Op } = require('sequelize/types');
 const { Boards } = require('../database/models/index');
+const { Op } = require('sequelize');
+const { InternalError } = require('../errors');
 const { BoardErrors } = require('../errors/messages');
 
 module.exports = {
@@ -13,10 +14,12 @@ module.exports = {
     },
 
     update: async function (id, data) {
+        console.log(id, data)
         const [result, board] = await Boards.update(data, {
             where: {
                 id,
-            }
+            },
+            returning: true
         }).catch(err => {
             console.log(err);
             throw new InternalError(BoardErrors.BOARD002);

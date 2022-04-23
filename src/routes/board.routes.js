@@ -9,9 +9,11 @@ routes.use(isAutenticated);
 
 routes.post('/', JoiValidator(BoardController.create, boardSchema.create));
 
-routes.get('/board/:id', JoiValidator(BoardController.findOne, boardSchema.findOne));
+routes.get('/mobile', BoardController.findMobile);
 
-routes.get('/boards');
+routes.get('/:id', JoiValidator(BoardController.findOne, boardSchema.findOne));
+
+routes.get('/', BoardController.findAll);
 
 routes.put('/:id', JoiValidator(BoardController.update, boardSchema.update));
 
