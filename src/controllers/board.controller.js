@@ -16,7 +16,7 @@ module.exports = {
 
         const boardMobileExists = await boardService.findMobile(userId);
 
-        if (boardMobileExists) {
+        if (boardMobileExists && isMobile) {
             throw new AppError(BoardErrors.BOARD006);
         }
 
