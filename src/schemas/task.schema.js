@@ -4,14 +4,14 @@ const { string, number } = Joi.types();
 module.exports = {
   create: Joi.object({
     name: string.required(),
-    description: string.optional(),
+    description: string.allow(null).optional(),
     status: number.min(1).max(3).required(),
     boardId: number.required(),
   }),
   update: Joi.object({
     id: number.required(),
     name: string.required(),
-    description: string.optional(),
+    description: string.allow(null).optional(),
     status: number.min(1).max(3).required(),
     boardId: number.required(),
   }),
